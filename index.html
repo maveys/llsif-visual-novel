@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Love Live Visual Novel</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=yes,width=device-width,initial-scale=1">
+    <link rel='stylesheet' text='text/css' href='./css/main.css'>
+    <link rel='stylesheet' text='text/css' href='./css/stylesheet.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="./Frame.js"></script>
+    <script src="./story.js"></script>
+</head>
+<body>
+    <button id="save_btn" type="button">Save</button>
+    <button id="load_btn" type="button">Load</button>
+    <div class="wrapper" id="background">
+        <div id="dark">
+            <div class="idol" id="left"></div>
+            <div class="idol" id="middle"></div>
+            <div class="idol" id="right"></div>
+            <div id="dialog">
+                <div id="speaker"></div>
+                <div id="speaker_text"></div>
+                <div class="text" id="text_one"></div>
+                <div class="text" id="text_two"></div>
+                <div class="text" id="text_three"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- temp fix button layout -->
+<script>
+document.getElementById('save_btn').onclick = function() {
+    console.log("saving");
+    localStorage.setItem('saved_frame', current_frame);
+}
+document.getElementById('load_btn').onclick = function() {
+    var saved_frame = localStorage.getItem('saved_frame');
+    if (saved_frame != null) {
+        console.log("Loading");
+        current_frame = saved_frame - 1;
+        next_frame();
+        return;
+    }
+    console.log("Loading");
+    current_frame = -1;
+    next_frame();
+}
+</script>
+</html>
